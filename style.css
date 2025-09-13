@@ -1,0 +1,510 @@
+/*
+* This file controls the visual design of the birthday website.
+* It sets the colors, fonts, layout, and all the animations you see on the screen.
+* Each section is styled separately to create a unique look and feel.
+*/
+
+/* --- General Website Styles --- */
+
+* {
+  margin: 0; /* Removes all default spacing around elements. */
+  padding: 0; /* Ensures consistent space inside elements. */
+  box-sizing: border-box; /* Makes sizing of elements more predictable. */
+}
+
+body {
+  font-family: 'Poppins', sans-serif; /* Sets the main font for all text. */
+  overflow-x: hidden; /* Prevents horizontal scrolling on the page. */
+  background: #fdf6ff; /* Sets a very light pink background color. */
+  color: #333; /* Sets a dark gray color for most text. */
+}
+
+section {
+  min-height: 100vh; /* Ensures each section takes up at least the full screen height. */
+  display: flex; /* Arranges elements in a flexible column layout. */
+  flex-direction: column; /* Stacks content vertically. */
+  align-items: center; /* Centers content horizontally. */
+  justify-content: center; /* Centers content vertically. */
+  padding: 2rem; /* Adds some space inside each section. */
+}
+
+h1, h2 {
+  text-align: center; /* Centers all main titles. */
+}
+
+/* --- Section Colors and Themes --- */
+
+.intro {
+  background: linear-gradient(135deg, #fbcabb, #f6a7c3, #e3abce); /* Creates a beautiful pink-purple gradient background. */
+  color: white; /* Changes text color to white for better contrast. */
+  position: relative; /* Allows child elements to be positioned on top of it. */
+  overflow: hidden; /* Hides any content that goes outside the section. */
+  z-index: 1; /* Puts this section on a specific layer for animations. */
+}
+
+.letter {
+  background: #e3abce; /* Sets a soft lavender-pink background. */
+  position: relative;
+  overflow: hidden;
+}
+
+.kdrama {
+  background: linear-gradient(135deg, #f6a7c3, #e3abce, #ceb6d9); /* Another gradient for the K-Drama section. */
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 80px 20px;
+  color: #333;
+}
+
+.bts {
+  background: linear-gradient(160deg, #0a0014, #1b0033, #2d0059); /* Creates a dark, night-sky-like background. */
+  position: relative;
+  text-align: center;
+  padding: 80px 20px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.gift {
+  background: #fbcabb; /* Sets a soft peach-pink color for the gift section. */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closing {
+  background: linear-gradient(135deg, #f6a7c3, #a2c8ec); /* A final gradient with pink and blue colors. */
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+/* --- 1. Intro Section Styles & Animations --- */
+
+.intro h1 {
+  font-size: 3rem; /* Makes the main title large. */
+  color: #fff;
+  text-shadow: 0 0 10px #e3abce, 0 0 20px #f6a7c3; /* Adds a glowing effect to the text. */
+  animation: glow 2s infinite alternate; /* Applies a pulsating animation to the glow. */
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px #e3abce, 0 0 20px #f6a7c3; }
+  to { text-shadow: 0 0 20px #f6a7c3, 0 0 40px #fbcabb; }
+}
+#play-icon-container {
+  margin-top: 30px; /* Adds space above the play button. */
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer; /* Changes the cursor to a pointer when you hover over it. */
+  z-index: 10; /* Makes the play button appear on top of other elements. */
+}
+#play-icon {
+  font-size: 3rem; /* Makes the music note icon large. */
+  color: #fff;
+  text-shadow: 0 0 10px #e0c3fc, 0 0 20px #e0c3fc; /* Adds a glow effect. */
+  animation: pulse 2s infinite alternate; /* Makes the icon gently pulse. */
+}
+#play-icon-container::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #e0c3fc 0%, transparent 70%); /* Creates a light ring effect. */
+  border-radius: 50%; /* Makes the light ring circular. */
+  transform: scale(0); /* Hides the light ring by making it tiny. */
+  opacity: 0; /* Makes the light ring transparent. */
+  transition: transform 0.5s, opacity 0.5s; /* Smoothly animates the light ring. */
+}
+#play-icon-container.clicked::after {
+  animation: lightBurst 0.5s forwards; /* Triggers the light burst animation when clicked. */
+}
+@keyframes pulse {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.1); }
+}
+@keyframes lightBurst {
+  from { transform: scale(0); opacity: 1; }
+  to { transform: scale(3); opacity: 0; }
+}
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Puts the particle animation behind the text and button. */
+}
+
+/* --- 2. Letter Section Styles & Animations --- */
+
+.letter {
+  background: #fceefc; /* Another soft background color. */
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-container {
+  perspective: 1000px; /* Creates a 3D effect for the scrolling action. */
+  width: 90%; /* Makes the scroll a good size on most screens. */
+  max-width: 600px; /* Prevents the scroll from becoming too wide on large screens. */
+  height: 50px;
+  background: #d4a98a; /* A light brown color for the scroll. */
+  border-radius: 25px; /* Rounds the edges of the scroll. */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Adds a shadow for a 3D look. */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* Makes it clear the scroll is clickable. */
+  z-index: 10;
+  transition: transform 0.3s; /* Smoothly animates the size change on hover. */
+}
+
+.scroll-container:hover {
+  transform: scale(1.05); /* Makes the scroll slightly larger when you hover over it. */
+}
+
+.scroll-seal {
+  width: 40px;
+  height: 40px;
+  background: #a83279; /* A dark pink color for the seal. */
+  border-radius: 50%; /* Makes the seal circular. */
+  position: absolute; /* Positions the seal precisely in the center. */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px #f6a7c3; /* Adds a glow to the seal. */
+  animation: pulse 1.5s infinite alternate; /* Makes the seal pulse. */
+  pointer-events: none; /* Allows clicks to go through the seal to the container below. */
+}
+
+.seal-crack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('...'); /* Uses a small image to create the crack texture. */
+  background-size: 100%;
+  opacity: 0; /* Hides the crack initially. */
+  transition: opacity 0.5s; /* Smoothly fades in the crack. */
+}
+.scroll-container.cracked .seal-crack {
+  opacity: 1; /* Makes the crack visible when the "cracked" class is added. */
+}
+
+.scroll-paper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0; /* Starts the paper as completely hidden. */
+  background: #fdf5e6; /* A light beige color for the paper. */
+  border-radius: 8px; /* Rounds the corners of the paper. */
+  overflow: hidden; /* Hides text until the paper is opened. */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Adds a subtle shadow. */
+  transition: width 1s ease-in-out, height 1s ease-in-out; /* Animates the opening of the paper. */
+}
+.scroll-container.open .scroll-paper {
+  width: 90%;
+  height: 500px; /* Changes the size of the paper to its full, open state. */
+  max-width: 600px;
+  transform: translate(-50%, -50%);
+}
+.scroll-content {
+  padding: 30px;
+  font-family: 'Great Vibes', cursive; /* Sets a beautiful cursive font for the letter. */
+  font-size: 24px;
+  line-height: 1.6; /* Adds space between lines of text. */
+  white-space: pre-line; /* Keeps line breaks from the JavaScript text. */
+  opacity: 0; /* Hides the text initially. */
+  transition: opacity 1s; /* Fades the text in. */
+}
+.scroll-container.open .scroll-content {
+  opacity: 1; /* Makes the text visible when the letter is open. */
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 1s step-end infinite; /* Makes the typing cursor blink. */
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+#petals-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* Allows the user to click through the petals to the content below. */
+}
+
+/* --- 3. K-Drama Section Styles & Animations --- */
+.kdrama-vibe {
+  z-index: 5;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.kdrama-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #a83279;
+  text-shadow: 0 0 10px rgba(255,192,203,0.8); /* Adds a pink glow effect. */
+}
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  font-style: italic; /* Sets the text to italics. */
+  color: #5c3a57;
+  border-right: 2px solid #a83279; /* Creates the animated right border. */
+  white-space: nowrap; /* Keeps the text on a single line. */
+  overflow: hidden; /* Hides the text until it's typed out. */
+  width: 0; /* Starts with a width of zero. */
+  animation: typing 5s steps(40, end) 2s forwards; /* The animation that "types" the text out. */
+}
+@keyframes typing { to { width: 100%; } }
+.photo-loop {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  margin: 30px auto;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25); /* Adds a shadow to the photos. */
+  background: #fff;
+}
+
+.photo-loop img {
+  position: absolute; /* Allows photos to be stacked on top of each other. */
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures the whole image fits inside the frame. */
+  opacity: 0; /* Hides the images initially. */
+  transform: scale(1.1);
+  filter: brightness(0.95) saturate(1.2); /* Adjusts the colors of the photos for a nicer look. */
+  animation: slideLoop 15s infinite; /* Applies the animated slideshow effect. */
+  background: #fff;
+}
+
+.photo-loop img:nth-child(1) { animation-delay: 0s; } /* Starts the first photo animation immediately. */
+.photo-loop img:nth-child(2) { animation-delay: 5s; } /* Starts the second photo after 5 seconds. */
+.photo-loop img:nth-child(3) { animation-delay: 10s; } /* Starts the third photo after 10 seconds. */
+@keyframes slideLoop {
+  0% { opacity: 0; transform: scale(1.1) translateX(30px); }
+  10% { opacity: 1; transform: scale(1) translateX(0); }
+  30% { opacity: 1; transform: scale(1.05); }
+  40% { opacity: 0; transform: scale(1.1) translateX(-30px); }
+  100% { opacity: 0; }
+}
+.film-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/png;base64,...'); /* Applies a subtle film grain texture. */
+  opacity: 0.1; /* Makes the grain very faint. */
+  pointer-events: none;
+}
+#blossoms {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.music-overlay {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #5c3a57;
+  opacity: 0; /* Starts hidden. */
+  animation: fadeIn 2s forwards 5s; /* Fades in the song title after a delay. */
+}
+
+/* --- 4. BTS Corner Styles & Animations --- */
+.bts-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(177,156,217,0.15), transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(255,182,193,0.15), transparent 60%); /* Creates a subtle, moving background glow effect. */
+  animation: bgGlow 12s infinite alternate ease-in-out; /* The animation for the background glow. */
+  z-index: 0;
+}
+@keyframes bgGlow {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+.bts-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #d9b3ff;
+  text-shadow: 0 0 10px #a855f7, 0 0 25px #c084fc, 0 0 40px #e879f9; /* Creates a strong neon glow effect. */
+  animation: neonShimmer 3s infinite linear; /* Makes the neon glow shimmer. */
+  z-index: 15;
+  position: relative;
+}
+@keyframes neonShimmer {
+  0% { text-shadow: 0 0 10px #a855f7, 0 0 20px #c084fc; }
+  50% { text-shadow: 0 0 20px #c084fc, 0 0 40px #e879f9, 0 0 60px #f0abfc; }
+  100% { text-shadow: 0 0 10px #a855f7, 0 0 20px #c084fc; }
+}
+.bts-video-container {
+  position: relative;
+  width: 90%;
+  max-width: 750px;
+  margin: 0px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(168,85,247,0.7), 0 0 80px rgba(192,132,252,0.6); /* Adds a strong glow around the video. */
+  border: 3px solid rgba(255,255,255,0.15); /* Adds a thin, transparent border. */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeIn 2s forwards; /* Fades in the video container. */
+  z-index: 10;
+}
+#jungkook-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scale(1);
+  animation: videoZoom 15s infinite alternate; /* A subtle zoom animation for the video. */
+  filter: none;
+}
+@keyframes videoZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.subtitle-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  z-index: 11;
+}
+.bts-subtitle { display: inline-block; }
+.cursor {
+  font-weight: bold;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+#video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.7); /* A dark, semi-transparent background for the button. */
+  color: white;
+  padding: 10px 25px;
+  border-radius: 50px; /* Makes the button a pill shape. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+#video-play-btn.hidden { opacity: 0; pointer-events: none; } /* Hides the button when the video is playing. */
+#video-play-btn:hover { background: rgba(0, 0, 0, 0.9); } /* Makes the button darker on hover. */
+#video-play-btn #play-icon { font-size: 2rem; }
+#jungkook-video { pointer-events: none; }
+#video-play-btn.hidden + #jungkook-video { pointer-events: auto; }
+#bts-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* --- 5. Gift Reveal Styles & Animations --- */
+
+.gift {
+  position: relative;
+  background: #fbcabb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.simple-gift-box {
+  font-size: 1.5rem;
+  padding: 20px 40px;
+  background: #f6a7c3; /* A bright pink background for the gift box. */
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s; /* Smoothly animates the size and color. */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.simple-gift-box:hover {
+  transform: scale(1.1); /* Makes the box slightly larger on hover. */
+  background: #fbcabb; /* Changes the background color on hover. */
+}
+
+.gift-reveal {
+  text-align: center;
+  position: absolute;
+  opacity: 0; /* Hides the gift until it's revealed. */
+  transition: opacity 1s ease-in-out; /* Smoothly fades the gift into view. */
+}
+.gift-reveal.show {
+  opacity: 1; /* Makes the gift visible when the "show" class is added. */
+}
+
+
+.gift-image {
+  max-width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Adds a shadow to the gift image. */
+}
+
+.gift-message {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5c3a57;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #fbcabb;
+  border-radius: 50%; /* Makes the confetti pieces circular. */
+  animation: confetti-fall 2s forwards; /* The animation that makes confetti fall. */
+  will-change: transform, opacity;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

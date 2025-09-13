@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Buddy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <section class="intro" id="intro">
+    <h1>🎉 Happy Birthday, Buddy 🎉</h1>
+    <h4>use speaker or earplugs for better experience</h4>
+    <div id="play-icon-container">
+      <div id="play-icon">🎵</div>
+    </div>
+    <audio id="bg-music" src="song.mp3" loop></audio>
+    <canvas id="particle-canvas"></canvas>
+  </section>
+
+  <section class="letter" id="letter">
+    <div class="scroll-container" id="scroll-container">
+      <div class="scroll-seal" id="scroll-seal">
+        <div class="seal-crack"></div>
+      </div>
+      <div class="scroll-top"></div>
+      <div class="scroll-paper" id="scroll-paper">
+        <div class="scroll-content">
+          <p id="letter-text"></p>
+          <span class="cursor">|</span>
+        </div>
+      </div>
+      <div class="scroll-bottom"></div>
+    </div>
+    <canvas id="petals-canvas"></canvas>
+  </section>
+
+  <section class="kdrama" id="kdrama">
+    <div class="kdrama-vibe">
+      <h2 class="kdrama-title">🌸 K-Drama Vibes 🌸</h2>
+      <p class="subtitle">Just like the lead role, you’re the star, Buddy 💜</p>
+      <div class="photo-loop">
+        <img src="photo1.jpg" alt="Sakshi">
+        <img src="photo2.jpg" alt="Sakshi">
+        <img src="photo3.jpg" alt="Sakshi">
+        <div class="film-grain"></div>
+      </div>
+    </div>
+    <audio id="kdrama-music" src="kdrama-ost.mp3" loop></audio>
+    <div class="music-overlay">
+      Now Playing: &nbsp; <span id="song-title"></span> 🎵
+    </div>
+    <canvas id="blossoms"></canvas>
+  </section>
+
+  <section class="bts" id="bts">
+    <div class="bts-overlay"></div>
+    <h2 class="bts-title">💜 Jungkook's Wish 💜</h2>
+    <div class="bts-video-container">
+      <video id="jungkook-video" src="birthday wish.mp4" playsinline></video>
+      <div id="video-play-btn" class="hidden">
+        <div id="play-icon">▶️</div>
+        <p>Play Your Message</p>
+      </div>
+      <div class="subtitle-container">
+        <p class="bts-subtitle" id="bts-subtitle"></p>
+        <span class="cursor">|</span>
+      </div>
+    </div>
+    <canvas id="bts-particles"></canvas>
+  </section>
+
+<section class="gift" id="gift">
+  <div class="simple-gift-box" id="gift-box">
+    🎁 Click here for your surprise 🎁
+  </div>
+  <div class="gift-reveal">
+    <img src="gift.jpg" alt="Gift" class="gift-image">
+    <p class="gift-message">Hope you loved your gift, Buddy 💜</p>
+    <div class="confetti-container"></div>
+  </div>
+</section>
+
+
+  <section class="closing" id="closing">
+    <div class="closing-note">
+      <h2 class="closing-title">💌 Happy Birthday again, Buddy 💌</h2>
+      <p>Always stay happy, keep smiling, and keep shining bright. From your Buddy.</p>
+    </div>
+    <div class="heart-pulse">💜</div>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+</html>
